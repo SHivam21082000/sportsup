@@ -1,8 +1,8 @@
-import { Button, Col, Container, Row } from 'react-bootstrap'
+import { Button, Container, Row } from 'react-bootstrap'
 import React, { useEffect, useState } from 'react'
 import { Card } from 'react-bootstrap'
 import './cards.css'
-import defaultImg from './spLogo.png'
+
 const Cards = () => {
     const [user, setUser] = useState([])
 
@@ -14,8 +14,8 @@ const Cards = () => {
     useEffect(() => {
         getNews();
     }, [])
-    
-   
+
+
 
 
     return (
@@ -23,24 +23,24 @@ const Cards = () => {
             <Container>
                 <Row>
                     {
-                        user.map((curNews) => {   
-                                
+                        user.map((curNews) => {
+
                             return (
                                 <>
-                                    
-                                    <Col md = '4'>
-                                        <Card className="card d-flex justify-content-center" style={{ width: '25rem' }}>
-                                            <Card.Img variant="top" onError={(e)=>{e.target.onerror = null; e.target.src={defaultImg}}} src={curNews.urlToImage} />
+                                    <div className="d-flex justify-content-center">
+
+                                        <Card className="card" style={{ width: '35rem' }}>
+                                            <Card.Img src={curNews.urlToImage} onError={(e) => { e.target.onerror = null; e.target.src = "./spLogo.png" }} />
                                             <Card.Body>
                                                 <Card.Title>{curNews.title}</Card.Title>
                                                 <Card.Text>
                                                     {curNews.content}
                                                 </Card.Text>
-                                                <Button href = {curNews.url} variant="primary">READ MORE</Button>
+                                                <Button href={curNews.url} variant="primary">READ MORE</Button>
                                             </Card.Body>
                                         </Card>
-                                    </Col>
 
+                                    </div>
                                 </>
                             )
                         })
